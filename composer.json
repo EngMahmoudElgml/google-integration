@@ -18,7 +18,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "EngMahmoudElgml\\GoogleIntegration\\GoogleServiceProvider"
+                "EngMahmoudElgml\\GoogleIntegration\\Providers\\GoogleServiceProvider"
             ],
             "aliases": {
                 "GoogleIntegtation": "EngMahmoudElgml\\GoogleIntegration\\Facades\\GoogleIntegration"
