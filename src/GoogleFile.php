@@ -57,9 +57,9 @@ class GoogleFile extends GoogleConnection
         return  $response;
     }
 
-    public function delete($fileId)
+    public function delete()
     {
-        $this->service->files->delete($fileId);
+        $this->service->files->delete($this->fileId);
     }
 
 }
