@@ -39,10 +39,10 @@ class GoogleFile extends GoogleConnection
         * Supported Mime Types : https://developers.google.com/drive/api/guides/ref-export-formats
         * */
 
-    public function export($fileId , $mimeType  = 'application/pdf' , $path  = false , $fileName = false)
+    public function export($mimeType  = 'application/pdf' , $path  = false , $fileName = false)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/{$fileId}/export?mimeType={$mimeType}");
+        curl_setopt($ch, CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/{$this->fileId}/export?mimeType={$mimeType}");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLINFO_HEADER_OUT, TRUE);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
