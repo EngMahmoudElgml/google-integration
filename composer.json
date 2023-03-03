@@ -1,0 +1,28 @@
+{
+    "name": "eng-mahmoud-elgml/google-integration",
+    "description": "This Package To Make Integration With Google Drive And Google sheets Very Simple",
+    "authors": [
+        {
+            "name": "Mahmoud Ahmed",
+            "email": "eng.m.ahmed99@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "EngMahmoudElgml\\GoogleIntegration\\": "src/"
+        }
+    },
+    "require": {
+        "google/apiclient": "^2.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EngMahmoudElgml\\GoogleIntegration\\GoogleServiceProvider"
+            ],
+            "aliases": {
+                "GoogleIntegtation": "EngMahmoudElgml\\GoogleIntegration\\Facades\\GoogleIntegration"
+            }
+        }
+    }
+}
