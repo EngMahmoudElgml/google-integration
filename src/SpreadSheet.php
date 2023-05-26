@@ -61,7 +61,11 @@ class SpreadSheet extends GoogleConnection
         return $list;
     }
 
-    public function read($sheetName){
-        return $this->service->spreadsheets_values->get($this->fileId , [$sheetName])->getValues();
+    public function read($sheetName , $range  = '' ){
+
+        if (!empty($range))
+            $range = '!'.$range;
+
+        return $this->service->spreadsheets_values->get($this->fileId , [$sheetName.$range])->getValues();
     }
 }
