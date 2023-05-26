@@ -8,10 +8,11 @@ class SpreadSheet extends GoogleConnection
 {
     private $fileId;
 
-    public function __construct($fileId)
+    public function __construct($fileId, $token = [])
     {
-        parent::__construct();
-        $this->fileId = $fileId ;
+        parent::__construct($token);
+        $this->fileId = $fileId;
+
         $this->service  = new \Google_Service_Sheets($this->client);
     }
 
