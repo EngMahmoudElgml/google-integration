@@ -6,6 +6,15 @@ namespace EngMahmoudElgml\GoogleIntegration;
 class GoogleConnection
 {
 
+    private const SCOPES = [
+                            'https://www.googleapis.com/auth/spreadsheets',
+                            'https://www.googleapis.com/auth/drive',
+                            'https://www.googleapis.com/auth/drive' ,
+                            'https://www.googleapis.com/auth/drive.appdata' ,
+                            'https://www.googleapis.com/auth/drive.file',
+                            'https://www.googleapis.com/auth/drive.scripts'
+                            ];
+
     protected $client;
     protected $service;
 
@@ -32,22 +41,21 @@ class GoogleConnection
 
     }
 
-    public function getClient(){
+    public function getClient(): \Google_Client
+    {
         return $this->client ;
     }
 
-    public function get_auth_url(){
-        $this->client->setScopes(['https://www.googleapis.com/auth/spreadsheets' ,
-            'https://www.googleapis.com/auth/drive' , 'https://www.googleapis.com/auth/drive' ,
-            'https://www.googleapis.com/auth/drive.appdata' ,'https://www.googleapis.com/auth/drive.file'
-            ,'https://www.googleapis.com/auth/drive.scripts']);
-
-        //$this->client->setAccessToken();
+    public function getAuthUrl(): string
+    {
+        $this->client->setScopes(self::SCOPES);
 
         return $this->client->createAuthUrl();
     }
 
-
-
+    public function handleCallback($code): array
+    {
+       return $this->client->fetchAccessTokenWithAuthCode($code);
+    }
 
 }

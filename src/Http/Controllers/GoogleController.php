@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 
 class GoogleController extends Controller
 {
-    public function callback(Request $request){
+    public function callback(Request $request): array
+    {
         $conn = new GoogleConnection();
-        $accessToken = $conn->getClient()->fetchAccessTokenWithAuthCode($request['code']);
-
-        return $accessToken;
+        return $conn->handleCallback($request['code']);
     }
 }

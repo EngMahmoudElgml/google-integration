@@ -1,8 +1,6 @@
 <?php
 
-
 namespace EngMahmoudElgml\GoogleIntegration;
-
 
 class SpreadSheet extends GoogleConnection
 {
@@ -16,7 +14,8 @@ class SpreadSheet extends GoogleConnection
         $this->service  = new \Google_Service_Sheets($this->client);
     }
 
-    public function updateCells( $sheetName , array $cells ){
+    public function updateCells( $sheetName , array $cells )
+    {
 
         $dataToInsert = array();
         foreach ($cells as $cellName => $value){
@@ -50,7 +49,8 @@ class SpreadSheet extends GoogleConnection
         return $this->service->spreadsheets_values->batchUpdate($this->fileId, $body) ;
     }
 
-    public function list(){
+    public function list(): array
+    {
         $list = [];
 
         $sheets  = $this->service->spreadsheets->get($this->fileId)->getSheets();
@@ -62,8 +62,8 @@ class SpreadSheet extends GoogleConnection
         return $list;
     }
 
-    public function read($sheetName , $range  = '' ){
-
+    public function read($sheetName , $range  = '' )
+    {
         if (!empty($range))
             $range = '!'.$range;
 

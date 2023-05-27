@@ -16,9 +16,9 @@ class GoogleFile extends GoogleConnection
      */
     private $defaultFileName;
 
-    public function __construct($fileId)
+    public function __construct($fileId, $token = [])
     {
-        parent::__construct();
+        parent::__construct($token);
         $this->fileId = $fileId ;
         $this->service  = new \Google_Service_Drive($this->client);
         $this->driveFile = new \Google_Service_Drive_DriveFile();
