@@ -57,6 +57,21 @@ class GoogleFile extends GoogleConnection
         return  $response;
     }
 
+    public function share($email,$role): void
+    {
+        $userPermission = new \Google_Service_Drive_Permission(array(
+            'type' => 'user',
+            'role' => $role,
+            'emailAddress' => $email
+        ));
+
+        $this->service->permissions->create($this->fileId,$userPermission);
+
+        $request = $this->service->permissions
+            ->create($this->fileId, $userPermission,array('fields' => 'id'));
+
+    }
+
     public function delete()
     {
         $this->service->files->delete($this->fileId);
