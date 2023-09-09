@@ -20,7 +20,7 @@ class GoogleConnection
 
     protected $token = [] ;
 
-    public function __construct($token = [])
+    public function __construct($token = [],$state = false)
     {
         if (count($token) > 0 )
             $this->token = $token;
@@ -34,6 +34,10 @@ class GoogleConnection
         $this->client->setAccessToken($this->token);
         $this->client->setAccessType('offline');
         $this->client->setPrompt('select_account consent');
+
+        if ($state)
+            $this->client->setState($state);
+
 
         if ($this->client->isAccessTokenExpired()){
                 $this->client->fetchAccessTokenWithRefreshToken($this->client->getRefreshToken());

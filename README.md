@@ -57,3 +57,44 @@ And if you want to save it directly to your local disk you can pass the second p
 <br>
 **c- delete it** <br>
 with `$googleFileObject->delete()` you can delete the file.
+<br>
+**d- share it** <br>
+with `$googleFileObject->share($email,$role)` you can share the file with specific email and you can pass the role in second parameter as `reader` or `writer` or `owner`.
+
+### 2- Google Sheets Features
+To use Google Sheets features you must create object from `SpreadSheet` class and pass spreadsheet id in constructor 
+then you can:
+<br>
+**a- List sheets in spreadsheet file** <br>
+with `$spreadSheetObject->list()` you can get all sheets in spreadsheet file.
+<br>
+**b- Get sheet data (Read the sheet)** <br>
+with `$spreadSheetObject->read($sheetName)` you can get all data in specific sheet in spreadsheet file. and you can get specific range of data by passing the range in second parameter.
+<br>
+Ex:
+```php 
+$spreadSheetObject->read('Sheet1','A1:B2');
+```
+**c- Update Cell Values** <br>
+with `$spreadSheetObject->updateCells($sheetName,$cellesWithItsValues)` you can update cell values in specific sheet in spreadsheet file.
+<br>
+Ex:
+```php
+$spreadSheetObject->updateCells('Sheet1',[
+    'A1'=>'value1',
+    'B1'=>'value2',
+    'A2'=>'value3',
+    'B2'=>'value4',
+]);
+```
+
+**d- Bulk Update To The Sheet** <br>
+if you want to update all the cells in the sheet you can use `$spreadSheetObject->override($sheetName,$data)` and pass the sheet name in first parameter and the data in second parameter as array of arrays.
+each array in the main array is a row in the sheet and each array inside it is a cell in the row.
+Ex:
+```php
+$spreadSheetObject->override('Sheet1',[
+    ['value1','value2'],
+    ['value3','value4'],
+]);
+```
